@@ -1,11 +1,12 @@
 function sendMessage(data) {
-    let userLink = chrome.storage.sync.get(['link', 'notify'], function (items) {
+    let userLink = chrome.storage.sync.get(['link', 'ChatID', 'notify'], function (items) {
         let userLink = items.link;
+        let ChatID = items.ChatID;
         let userNotify = items.notify;
-        console.log(userLink, userNotify)
-        if (!userLink) {
+        if (!userLink || !ChatID) {
             return
         }
+        data.chat_id = ChatID
         data.disable_notification = userNotify
         let xhr = new XMLHttpRequest();
         xhr.open('POST', userLink, true);
@@ -37,7 +38,11 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
     }else if (info.linkUrl) {
         data.text = info.linkUrl
     }else if (info.srcUrl) {
-        data.photo = info.srcUrl
+        if (info.srcUrl.indexOf('https') == 0) {
+            data.photo = info.srcUrl	
+        }else {	
+            data.text = info.srcUrl	
+        }
     }
     sendMessage(data)
 })

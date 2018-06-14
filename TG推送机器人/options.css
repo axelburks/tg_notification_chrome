@@ -19,6 +19,13 @@
     border-bottom: 2px solid grey;
 }
 
+.contentView #ChatID {
+    font-size: 2.2em;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid grey;
+}
+
 .contentView div label {
     line-height: 2.2em;
     font-size: 2.2em;

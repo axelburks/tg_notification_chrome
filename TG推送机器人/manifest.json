@@ -21,6 +21,7 @@
     "permissions": [
         "activeTab",
         "https://tgbot.lbyczf.com/*",
+        "https://api.telegram.org/*",
         "storage",
         "contextMenus"
     ],
